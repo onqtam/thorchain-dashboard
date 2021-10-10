@@ -7,7 +7,7 @@
             <v-list-item-group v-model="model">
               <v-list-item
                 v-for="n in dashboards"
-                :key="n"
+                :key="n.name"
                 link
               >
                 <v-list-item-content>
@@ -34,11 +34,11 @@
 
 <script>
   export default {
-    name: 'Main',
+    name: 'Home',
 
-    methods: [
+    methods: {
       // https://api.flipsidecrypto.com/api/v2/queries/     /data/latest
-    ],
+    },
 
     data: () => ({
       model: 0,

@@ -40,20 +40,26 @@
     </v-app-bar>
 
     <v-main class="grey lighten-3">
-      <Main/>
+
+    <!-- <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </div> -->
+    <router-view/>
+      <!-- <Main/> -->
     </v-main>
   </v-app>
 </template>
 
 <script>
-import Main from './components/Main';
+// import Main from './components/Main';
 import Vue from 'vue'
 
 export default {
   name: 'App',
 
   components: {
-    Main,
+    // Main,
   },
 
   data: () => ({

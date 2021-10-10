@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import NetworkStats from '../views/NetworkStats.vue'
+import Supply from '../views/Supply.vue'
+import Users from '../views/Users.vue'
+import Liquidity from '../views/Liquidity.vue'
+import Misc from '../views/Misc.vue'
 
 Vue.use(VueRouter)
 
@@ -8,7 +12,32 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    redirect: 'NetworkStats'
+  },
+  {
+    path: '/NetworkStats',
+    name: 'NetworkStats',
+    component: NetworkStats
+  },
+  {
+    path: '/Supply',
+    name: 'Supply',
+    component: Supply
+  },
+  {
+    path: '/Users',
+    name: 'Users',
+    component: Users
+  },
+  {
+    path: '/Liquidity',
+    name: 'Liquidity',
+    component: Liquidity
+  },
+  {
+    path: '/Misc',
+    name: 'Misc',
+    component: Misc
   },
   // {
   //   path: '/about',

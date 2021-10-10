@@ -14,10 +14,11 @@
         ></v-skeleton-loader>
       </div>
       <div v-else>
-        not undefined
+        DEFINED !!!
         {{ c.fetched }}
         {{ c.fetched }}
         {{ c.fetched }}
+        <Metric @chartdata=c.fetched />
       </div>
     </div>
   </div>
@@ -25,6 +26,8 @@
 
 <script>
 import Vue from 'vue'
+
+import Metric from '../components/Metric.vue'
 
 function delay(t, v) {
    return new Promise(function(resolve) { 
@@ -40,6 +43,7 @@ Promise.prototype.delay = function(t) {
 
 export default {
   name: 'NetworkStats',
+  components: { Metric, },
 
   created() {
     this.charts.forEach(c => {

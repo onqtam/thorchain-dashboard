@@ -63,7 +63,7 @@
               </v-list>
             </v-sheet>
           </v-col>
-          <v-col>
+          <v-col cols="9">
             <v-sheet min-height="70vh" rounded="lg">
               <router-view/>
             </v-sheet>

@@ -45,6 +45,7 @@
 
 <script>
 import HelloWorld from './components/HelloWorld';
+import axios from 'axios';
 
 export default {
   name: 'App',
@@ -56,6 +57,18 @@ export default {
   data: () => ({
     //
   }),
+
+  mounted () {
+    this.getA().then((result) => {
+      console.log(result)
+    })
+  },
+  methods: {
+    getA :() =>{
+        console.log('test')
+        return axios.get(`https://api.flipsidecrypto.com/api/v2/queries/aab55e78-2c41-4708-b7a8-ed576556418a/data/latest`);
+    }
+  }
 };
 </script>
 

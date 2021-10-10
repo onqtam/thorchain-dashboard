@@ -1,61 +1,69 @@
 <template>
-  <v-app>
+  <v-app id="inspire">
     <v-app-bar
       app
-      color="primary"
-      dark
+      color="white"
+      flat
     >
-      <div class="d-flex align-center">
+      <v-container class="py-0 fill-height">
         <v-img
-          alt="Vuetify Logo"
+          alt="THORChain dashboard Logo"
           class="shrink mr-2"
           contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+          src="favicon.ico"
           transition="scale-transition"
-          width="40"
+          width="60"
         />
+        THORChain dashboard
+        <!-- 
+        <v-btn
+          v-for="link in links"
+          :key="link"
+          text
+        >
+          {{ link }}
+        </v-btn>
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
+        <v-spacer></v-spacer>
 
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+        <v-responsive max-width="260">
+          <v-text-field
+            dense
+            flat
+            hide-details
+            rounded
+            solo-inverted
+          ></v-text-field>
+        </v-responsive>
+        -->
+      </v-container>
     </v-app-bar>
 
-    <v-main>
-      <HelloWorld/>
+    <v-main class="grey lighten-3">
+      <Main/>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
-import axios from 'axios';
+import Main from './components/Main';
+import Vue from 'vue'
 
 export default {
   name: 'App',
 
   components: {
-    HelloWorld,
+    Main,
   },
 
   data: () => ({
     //
+    // links: [
+    //     'Dashboard',
+    //     'Messages',
+    //     'Profile',
+    //     'Updates',
+    //   ],
   }),
 
   mounted () {
@@ -66,7 +74,7 @@ export default {
   methods: {
     getA :() =>{
         console.log('test')
-        return axios.get(`https://api.flipsidecrypto.com/api/v2/queries/aab55e78-2c41-4708-b7a8-ed576556418a/data/latest`);
+        return Vue.axios.get(`https://api.flipsidecrypto.com/api/v2/queries/aab55e78-2c41-4708-b7a8-ed576556418a/data/latest`);
     }
   }
 };

@@ -1,25 +1,76 @@
 <template>
   <div>
     NetworkStats!
-      <div v-for="c in charts" :key=c.title>
+    <div v-for="c in charts" :key=c.title>
+      <br />
+      <div v-if="c.fetched === undefined">
+        undefined
         {{ c.source }}
+        {{ c.fetched }}
+
+        <v-skeleton-loader
+          class="mx-auto"
+          type="card"
+        ></v-skeleton-loader>
       </div>
+      <div v-else>
+        not undefined
+        {{ c.fetched }}
+        {{ c.fetched }}
+        {{ c.fetched }}
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'NetworkStats',
+import Vue from 'vue'
 
-    methods: {
-      // https://api.flipsidecrypto.com/api/v2/queries/  <SOURCE>   /data/latest
-    },
+function delay(t, v) {
+   return new Promise(function(resolve) { 
+       setTimeout(resolve.bind(null, v), t)
+   });
+}
 
-    data: () => ({
-      charts: [
-        { title: "m1", source: "aab55e78-2c41-4708-b7a8-ed576556418a" },
-        { title: "m2", source: "aab55e78-2c41-4708-b7a8-ed576556418a" },
-      ],
-    }),
-  }
+Promise.prototype.delay = function(t) {
+    return this.then(function(v) {
+        return delay(t, v);
+    });
+}
+
+export default {
+  name: 'NetworkStats',
+
+  created() {
+    this.charts.forEach(c => {
+      Vue.axios.get(`https://api.flipsidecrypto.com/api/v2/queries/${c.source}/data/latest`).then((result) => {
+        // TODO: remove artificial delay
+        Promise.resolve().delay(1000).then(() => {
+          // console.log(result);
+          // TODO: don't just take the first data point - take all of it!
+          c.fetched = result.data[0];
+        });
+      })
+    })
+  },
+
+  methods: {
+    // https://api.flipsidecrypto.com/api/v2/queries/  <SOURCE>   /data/latest
+  },
+
+  data: () => ({
+    charts: [
+      {
+        title: "chart 1",
+        source: "aab55e78-2c41-4708-b7a8-ed576556418a",
+        fetched: undefined
+      },
+      {
+        title: "chart 2",
+        source: "d33d1637-f7c1-4fd1-8bbe-691bfcc334ee",
+        fetched: undefined
+      },
+    ],
+  }),
+}
 </script>

@@ -1,5 +1,8 @@
 # thorchain-dashboard
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/2e9fe091-07fa-40e4-8464-0099ea7c5bfb/deploy-status)](https://app.netlify.com/sites/thorchain-dashboard/deploys)
+
+
 ## Project setup
 ```
 npm install

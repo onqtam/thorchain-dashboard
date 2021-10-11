@@ -1,14 +1,15 @@
 
 
 <script>
-import { Line } from 'vue-chartjs'
+// CommitChart.js
+import { Bar } from 'vue-chartjs'
 
 export default {
-  extends: Line,
+  extends: Bar,
   props: ['chartdata', 'options'],
   mounted () {
     // this.renderChart(this.chartdata, this.options)
-
+    // Overwriting base render method with actual data.
     this.renderChart({
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
       datasets: [

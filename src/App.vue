@@ -15,6 +15,12 @@
           width="60"
         />
         THORChain dashboard
+
+        <v-spacer></v-spacer>
+        <v-btn target="blank" href="https://github.com/onqtam/thorchain-dashboard">
+          <v-icon>mdi-github</v-icon>source
+        </v-btn>
+
         <!-- 
         <v-btn
           v-for="link in links"

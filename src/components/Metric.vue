@@ -1,28 +1,36 @@
-
-
 <script>
 // CommitChart.js
 import { Bar } from 'vue-chartjs'
 
+// {"DAY":"2021-10-10T00:00:00Z","SUM(RUNE_AMOUNT_USD)":1906175.5315498754}
+
 export default {
   extends: Bar,
-  props: ['chartdata', 'options'],
+  props: ['title', 'chartdata', 'options'],
   mounted () {
+    // console.log(JSON.stringify(this['chartdata'][0]))
+    // get the first key that's not "DAY" - assuming that there are only 2
+    const label = Object.keys(this['chartdata'][0]).find(key => key != "DAY");
+    const data = this['chartdata'].map(obj => obj[label])
+    const labels = this['chartdata'].map(obj => {
+        const date = new Date(obj.DAY);
+        return date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
+    })
+    // console.log(data)
+    // console.log(data[0])
+    // console.log(labels)
+    // console.log(labels[0])
     // this.renderChart(this.chartdata, this.options)
-    // Overwriting base render method with actual data.
     this.renderChart({
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+      labels: labels,
       datasets: [
         {
-          label: 'GitHub Commits',
+          label: label,
           backgroundColor: '#f87979',
-          data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11]
+          data: data,
         }
       ]
     })
   }
 }
 </script>
-
-<style>
-</style>

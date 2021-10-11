@@ -6,7 +6,6 @@
       <div v-if="c.fetched === undefined">
         undefined
         {{ c.source }}
-        {{ c.fetched }}
 
         <v-skeleton-loader
           class="mx-auto"
@@ -14,11 +13,8 @@
         ></v-skeleton-loader>
       </div>
       <div v-else>
-        DEFINED !!!
-        {{ c.fetched }}
-        {{ c.fetched }}
-        {{ c.fetched }}
-        <Metric @chartdata=c.fetched />
+        <h1>{{c.title}}</h1>
+        <Metric :title=c.title :chartdata=c.fetched />
       </div>
     </div>
   </div>
@@ -51,8 +47,7 @@ export default {
         // TODO: remove artificial delay
         Promise.resolve().delay(1000).then(() => {
           // console.log(result);
-          // TODO: don't just take the first data point - take all of it!
-          c.fetched = result.data[0];
+          c.fetched = result.data.reverse();
         });
       })
     })
@@ -65,12 +60,12 @@ export default {
   data: () => ({
     charts: [
       {
-        title: "chart 1",
+        title: "$RUNE upgraded to native",
         source: "aab55e78-2c41-4708-b7a8-ed576556418a",
         fetched: undefined
       },
       {
-        title: "chart 2",
+        title: "something something LP returns something",
         source: "d33d1637-f7c1-4fd1-8bbe-691bfcc334ee",
         fetched: undefined
       },
